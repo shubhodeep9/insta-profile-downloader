@@ -1,14 +1,24 @@
-package main
+package photos
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/headzoo/surf"
+	"strconv"
 )
 
 var ct int = 0
 var uri string
-var urls []string
+var urls []PhotoStruct
+
+type Photos struct {
+	Count int
+	Photo []PhotoStruct
+}
+
+type PhotoStruct struct {
+	Title string
+	Url   string
+}
 
 func page_iterator(url string) {
 	//initiate browser
@@ -26,24 +36,35 @@ func page_iterator(url string) {
 	//posts
 	posts, _ := parse["nodes"].([]interface{})
 
-	for i := range posts {
-		post_uri, _ := posts[i].(map[string]interface{})["display_src"].(string)
-		urls = append(urls, post_uri)
-	}
+	if len(posts) > 0 {
 
-	//next_page
-	page_info, _ := parse["page_info"].(map[string]interface{})
-	hasnextpage, _ := page_info["has_next_page"].(bool)
+		for i := range posts {
+			post_uri, _ := posts[i].(map[string]interface{})["display_src"].(string)
+			date, _ := posts[i].(map[string]interface{})["date"].(int)
+			photo := PhotoStruct{
+				Title: strconv.Itoa(date),
+				Url:   post_uri,
+			}
+			urls = append(urls, photo)
+		}
 
-	if hasnextpage {
-		end_cursor := page_info["end_cursor"].(string)
-		page_iterator(uri + "/?max_id=" + end_cursor)
+		//next_page
+		page_info, _ := parse["page_info"].(map[string]interface{})
+		hasnextpage, _ := page_info["has_next_page"].(bool)
+
+		if hasnextpage {
+			end_cursor := page_info["end_cursor"].(string)
+			page_iterator(uri + "/?max_id=" + end_cursor)
+		}
 	}
 
 }
 
-func main() {
-	uri = "https://www.instagram.com/rishi_raj95"
+func GetPhotos() *Photos {
+	uri = "https://www.instagram.com/nikhil.kasukurthi"
 	page_iterator(uri)
-	fmt.Println(len(urls))
+	return &Photos{
+		Count: len(urls),
+		Photo: urls,
+	}
 }
