@@ -17,7 +17,14 @@ func main() {
 	extracted_react_data := []byte(scr.Text()[21 : len(scr.Text())-1])
 
 	var parsed interface{}
-	err := json.Unmarshal(extracted_react_data, &parsed)
-	parse, _ := parsed.(map[string]interface{})
-	fmt.Println(err, parse["country_code"])
+	json.Unmarshal(extracted_react_data, &parsed)
+	parse, _ := parsed.(map[string]interface{})["entry_data"].(map[string]interface{})["ProfilePage"].([]interface{})[0].(map[string]interface{})["user"].(map[string]interface{})["media"].(map[string]interface{})
+
+	//posts
+	posts, _ := parse["nodes"].([]interface{})
+
+	for i := range posts {
+		post_uri, _ := posts[i].(map[string]interface{})["display_src"].(string)
+		fmt.Println(post_uri)
+	}
 }
