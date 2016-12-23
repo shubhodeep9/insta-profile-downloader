@@ -1,0 +1,28 @@
+{
+  "name": "insta-profile-downloader",
+  "version": "1.0.0",
+  "description": "Instagram Profile all photos downloader",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhodeep9/insta-profile-downloader.git"
+  },
+  "keywords": [
+    "Instagram"
+  ],
+  "author": "Shubhodeep Mukherjee",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/shubhodeep9/insta-profile-downloader/issues"
+  },
+  "homepage": "https://github.com/shubhodeep9/insta-profile-downloader#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.4"
+  }
+}

@@ -1,4 +1,4 @@
-package photos
+package api
 
 import (
 	"encoding/json"
