@@ -4,6 +4,6 @@
 	<title>InstaPic</title>
 </head>
 <body>
-
+{{.Count}}
 </body>
 </html>

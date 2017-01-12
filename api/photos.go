@@ -7,6 +7,7 @@ import (
 )
 
 var ct int = 0
+var ure string
 var urls []PhotoStruct
 
 type Photos struct {
@@ -53,13 +54,14 @@ func page_iterator(url string) {
 
 		if hasnextpage {
 			end_cursor := page_info["end_cursor"].(string)
-			page_iterator(uri + "/?max_id=" + end_cursor)
+			page_iterator(ure + "/?max_id=" + end_cursor)
 		}
 	}
 
 }
 
 func GetPhotos(uri string) *Photos {
+	ure = uri
 	page_iterator(uri)
 	return &Photos{
 		Count: len(urls),
