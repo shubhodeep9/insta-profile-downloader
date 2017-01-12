@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"insta-profile-downloader/insta-profile-downloader/controllers"
 	"github.com/astaxie/beego"
+	"insta-profile-downloader/controllers"
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+	beego.Router("/", &controllers.MainController{})
 }

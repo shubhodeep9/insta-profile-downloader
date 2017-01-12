@@ -1,11 +1,10 @@
 package main
 
 import (
-	_ "insta-profile-downloader/insta-profile-downloader/routers"
 	"github.com/astaxie/beego"
+	_ "insta-profile-downloader/routers"
 )
 
 func main() {
 	beego.Run()
 }
-

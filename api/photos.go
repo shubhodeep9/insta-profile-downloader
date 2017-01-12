@@ -7,7 +7,6 @@ import (
 )
 
 var ct int = 0
-var uri string
 var urls []PhotoStruct
 
 type Photos struct {
@@ -60,8 +59,7 @@ func page_iterator(url string) {
 
 }
 
-func GetPhotos() *Photos {
-	uri = "https://www.instagram.com/nikhil.kasukurthi"
+func GetPhotos(uri string) *Photos {
 	page_iterator(uri)
 	return &Photos{
 		Count: len(urls),
